@@ -27,8 +27,7 @@
 
         $manager_location = new Manager_location($conn);
 
-        // $sql = $conn-> query("SELECT * FROM logement ");
-        // $results = $sql->fetchAll(PDO::FETCH_ASSOC);
+
 
         foreach ($results as $result) {
 
