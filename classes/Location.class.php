@@ -89,4 +89,12 @@ class Location
     {
         return  $this->reservation_message;
     }
+    public function getCategory_id()
+    {
+        return $this->category_id;
+    }
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
 }
