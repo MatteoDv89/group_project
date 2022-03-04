@@ -1,17 +1,16 @@
 <?php
 
+$dsn = 'mysql:dbname=real_estate;host=localhost';
+$user = 'root';
+$password = '';
 
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,    
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-];
-
-// Now you create your connection string
 try {
-    // Then pass the options as the last parameter in the connection string
-    $conn = new PDO("mysql:host=localhost; dbname=real_estate", 'root', '', $options);
 
-    // That's how you can set multiple attributes
-} catch(PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    $conn = new PDO($dsn, $user, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+
+    echo "erreur:" . $e->getMessage();
+    //throw $th;
 }
