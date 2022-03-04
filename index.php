@@ -4,18 +4,12 @@
 <table>
     <thead>
         <tr>
-            <td>Apercu</td>
             <td>Titre de l'annonce</td>
-            <td>Adresse du bien</td>
+            <td>Description</td>
             <td>Ville</td>
             <td>CP</td>
-            <td>Surface</td>
             <td>Prix</td>
-            <td>Type</td>
-            <td>Description</td>
-            <td>Modifier</td>
-            <td>Supprimer</td>
-
+            <td>Catégorie</td>
         </tr>
     </thead>
     <tbody>
@@ -27,8 +21,7 @@
 
         $manager_location = new Manager_location($conn);
 
-        // $sql = $conn-> query("SELECT * FROM logement ");
-        // $results = $sql->fetchAll(PDO::FETCH_ASSOC);
+
 
         foreach ($results as $result) {
 
@@ -99,6 +92,8 @@
 
         <?php
 
+        $all_locations = $manager_location->get_all_locations();
+        print_r($all_locations);
         }
         ?>
 
