@@ -4,12 +4,18 @@
 <table>
     <thead>
         <tr>
+            <td>Apercu</td>
             <td>Titre de l'annonce</td>
-            <td>Description</td>
+            <td>Adresse du bien</td>
             <td>Ville</td>
             <td>CP</td>
+            <td>Surface</td>
             <td>Prix</td>
-            <td>Catégorie</td>
+            <td>Type</td>
+            <td>Description</td>
+            <td>Modifier</td>
+            <td>Supprimer</td>
+
         </tr>
     </thead>
     <tbody>
@@ -92,8 +98,6 @@
 
         <?php
 
-        $all_locations = $manager_location->get_all_locations();
-        print_r($all_locations);
         }
         ?>
 

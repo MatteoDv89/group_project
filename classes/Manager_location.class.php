@@ -58,7 +58,6 @@ class Manager_location
     //DELETE STEVEN
 
 
-
     //GET_ONE HUGO
 
     public function get_one_location(int $id_advert) {
@@ -70,7 +69,8 @@ class Manager_location
 
     public function get_all_locations() {
 
-       return $all_locations = $this->bdd->query("SELECT * FROM advert")->fetchAll(PDO::FETCH_ASSOC);
+    return $all_locations = $this->bdd->query("SELECT * FROM advert")->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
 }

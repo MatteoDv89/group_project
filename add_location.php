@@ -24,7 +24,7 @@
                 <input type="text" name="postcode" required>
             </div>
             <div class="field input">
-                <label>Ville</label>
+                <label>Ville du bien immo</label>
                 <input type="text" name="city" required>
             </div>
 
@@ -35,7 +35,7 @@
 
 
             <div class="field input">
-                <label>Catégorie de l'annonce</label>
+                <label>Categorie de l'annonce</label>
                 <select name="category_id" id="type">
                     <?php
 

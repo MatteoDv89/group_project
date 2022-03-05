@@ -3,7 +3,7 @@
 
 class Location
 {
-    private $id_advert;
+
     private $title;
     private $description;
     private $postcode;
@@ -28,10 +28,6 @@ class Location
 
     //SETTER
 
-    private function setId(int $id)
-    {
-        $this->id_advert = $id_advert;
-    }
     public function setTitle($value)
     {
         $this->title = $value;
@@ -69,10 +65,6 @@ class Location
 
     //GETTER
 
-    public function getId()
-    {
-        return $this->id_advert;
-    }
     public function getTitle()
     {
         return  $this->title;
