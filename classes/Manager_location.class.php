@@ -24,6 +24,7 @@ class Manager_location
 
     //ADD
 
+<<<<<<< HEAD
     public function add_location(array $array) {
         
         $msg_reservation = "disponible";
@@ -32,6 +33,16 @@ class Manager_location
         $sql = $this->bdd->prepare("INSERT INTO advert (title,description,postcode,city,price,reservation_message,category_id)
                                     VALUES (:title,:description,:postcode,:city,:price,:reservation_message,:category_id);");
         
+=======
+    public function add_location(array $array)
+    {
+        $msg_reservation = "disponible";
+
+
+
+        $sql = $this->bdd->prepare("INSERT INTO advert (title,description,postcode,city,price,reservation_message,category_id)
+                            VALUES (:title,:description,:postcode,:city,:price,:reservation_message,:category_id);");
+>>>>>>> 58d5afa553212dcd520b4faa2d1082353e4a9efb
         $sql->bindValue(':title', $array['title'], PDO::PARAM_STR);
         $sql->bindValue(':description', $array['description'], PDO::PARAM_STR);
         $sql->bindValue(':postcode', $array['postcode'], PDO::PARAM_STR);
@@ -39,7 +50,10 @@ class Manager_location
         $sql->bindValue(':price', $array['price'], PDO::PARAM_STR);
         $sql->bindValue(':reservation_message', $msg_reservation, PDO::PARAM_STR);
         $sql->bindValue(':category_id', $array['category_id'], PDO::PARAM_INT);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58d5afa553212dcd520b4faa2d1082353e4a9efb
         $sql->execute();
 
         if ($sql->rowCount() > 0) {
@@ -60,6 +74,7 @@ class Manager_location
 
     //GET_ONE HUGO
 
+<<<<<<< HEAD
     public function get_one_location(int $id_advert) {
 
         return $one_location = $this->bdd->query("SELECT * FROM advert WHERE id_advert = $id_advert['id_advert']")->fetch(PDO::FETCH_ASSOC);
@@ -72,5 +87,11 @@ class Manager_location
     return $all_locations = $this->bdd->query("SELECT * FROM advert")->fetchAll(PDO::FETCH_ASSOC);
     }
 
+=======
+
+
+    //GET_ALL HUGO
+
+>>>>>>> 58d5afa553212dcd520b4faa2d1082353e4a9efb
 
 }
