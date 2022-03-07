@@ -1,4 +1,11 @@
-<?php include_once "php/header.php"  ?>
+<?php
+include_once "php/header.php";
+require_once('php/config.php');
+spl_autoload_register(function ($class) {
+    include './classes/' . $class . '.class.php';
+});
+
+?>
 
 
 <div class="wrapper">
@@ -10,27 +17,27 @@
 
             <div class="field input">
                 <label>Titre</label>
-                <input type="text" name="title" required>
+                <input type="text" name="title">
             </div>
             <div class="field input">
                 <label>Description</label>
 
-                <textarea name="description" cols="30" rows="10" required>
+                <textarea name="description" cols="30" rows="10">
                     Ajouter une description
                 </textarea>
             </div>
             <div class="field input">
                 <label>Code Postal</label>
-                <input type="text" name="postcode" required>
+                <input type="text" name="postcode">
             </div>
             <div class="field input">
                 <label>Ville du bien immo</label>
-                <input type="text" name="city" required>
+                <input type="text" name="city">
             </div>
 
             <div class="field input">
                 <label>Prix</label>
-                <input type="number" name="price" required>
+                <input type="number" name="price">
             </div>
 
 
@@ -75,16 +82,27 @@
 
             <?php
 
-            spl_autoload_register(function ($class) {
-                include './classes/' . $class . '.class.php';
-            });
-            require_once('php/config.php');
-            $manager_location = new Manager_location($conn);
+
 
             if (isset($_POST) && isset($_POST['submit'])) {
 
-                $appartement =   new Location($_POST);
-                $manager_location->add_location($_POST);
+
+
+                if (
+                    !empty($_POST['title']) &&
+                    !empty($_POST['postcode']) &&
+                    !empty($_POST['city']) &&
+                    !empty($_POST['price']) &&
+                    !empty($_POST['category_id']) &&
+                    !empty($_POST['description'])
+                ) {
+                    $manager_location = new Manager_location($conn);
+                    $appartement =   new Location($_POST);
+                    $manager_location->add_location($appartement->get_info());
+                } else {
+
+                    echo "<div class='error-txt'>All field are required</div>";
+                }
             }
 
             ?>

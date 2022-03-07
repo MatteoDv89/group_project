@@ -39,6 +39,10 @@ body{
     color:#fff;;
     margin-bottom: 20px;
 }
+.navbar h1{
+    font-weight: 600;
+    font-size: 32px;
+}
 
 .wrapper{
     background: #fff;
@@ -746,5 +750,18 @@ a{
     text-shadow: #f7f7f7 0px 0px 10px 0px;
     z-index: 2;
   
+}
+.button_more{
+    position:relative;
+    width: 100vw;
+}
+.view_all{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #DC0E63;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    
 }
 

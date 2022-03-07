@@ -8,7 +8,7 @@ spl_autoload_register(function ($class) {
 
 ?>
 
-<h2>Paru récemment:</h2>
+
 <table>
     <thead>
         <tr>
@@ -22,8 +22,8 @@ spl_autoload_register(function ($class) {
             <td>Description</td>
             <td>Reservation</td>
             <!-- <td>Date</td> -->
-            <!-- <td>Modifier</td>
-            <td>Supprimer</td> -->
+            <td>Modifier</td>
+            <td>Supprimer</td>
 
         </tr>
     </thead>
@@ -84,7 +84,7 @@ spl_autoload_register(function ($class) {
                      <?php echo substr($result['created_at'], 0, 10); ?> 
                 </td> -->
 
-                <!-- 
+
                 <td>
                     <form action="edit.php" method='post' class='edit'>
                         <input type="text" name="location_id" value=<?php echo $result['id_advert']; ?> hidden>
@@ -97,7 +97,7 @@ spl_autoload_register(function ($class) {
 
                 <td>
                     <a href="delete.php?id_location=<?php echo $result['id_advert']; ?>" class="link_delete"><i class="fas fa-trash"></i></a>
-                </td> -->
+                </td>
 
 
 
@@ -123,5 +123,5 @@ spl_autoload_register(function ($class) {
     </tbody>
 </table>
 <div class="button_more">
-    <a class='view_all' href="all_location.php">Consulter toute les annonces</a>
+    <a class='view_all' href="index.php">Retour a l'accueil</a>
 </div>
