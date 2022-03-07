@@ -15,8 +15,7 @@
             <div class="field input">
                 <label>Description</label>
 
-                <textarea name="description" cols="30" rows="10" required>
-                    Ajouter une description
+                <textarea name="description" placeholder=" Ajouter une description"cols="30" rows="10" required>
                 </textarea>
             </div>
             <div class="field input">

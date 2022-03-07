@@ -11,6 +11,7 @@ class Location
     private $price;
     private $reservation_message;
     private $category_id;
+    private $category_name;
     private $created_at;
 
     public function __construct(array $data)
@@ -60,6 +61,10 @@ class Location
     {
         $this->created_at = $value;
     }
+    public function setCategoryName($value)
+    {
+        $this->category_name = $value;
+    }
 
 
 
@@ -96,5 +101,9 @@ class Location
     public function getCreated_at()
     {
         return $this->created_at;
+    }
+    public function getCategory_name()
+    {
+        return $this->category_name;
     }
 }

@@ -61,14 +61,16 @@ class Manager_location
 
     public function get_one_location(array $array) {
 
-        return $one_location = $this->bdd->query("SELECT * FROM advert WHERE id_advert = $array['id_advert']")->fetch(PDO::FETCH_ASSOC);
+        $one_location = $this->bdd->query("SELECT * FROM advert WHERE id_advert = {$array['id_advert']}")->fetch(PDO::FETCH_ASSOC);
+        return $one_location;
     }
 
     //GET_ALL HUGO
 
-    public function get_all_locations() {
+    public function get_all_location() {
 
-    return $all_locations = $this->bdd->query("SELECT * FROM advert")->fetchAll(PDO::FETCH_ASSOC);
+        return $all_location = $this->bdd->query("SELECT advert.*, category.value AS category_name FROM advert
+                                                  INNER JOIN category ON category.id_category = advert.category_id")->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
