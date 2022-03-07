@@ -1,4 +1,8 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once "php/header.php";
 require_once('php/config.php');
 spl_autoload_register(function ($class) {
@@ -22,9 +26,7 @@ spl_autoload_register(function ($class) {
             <div class="field input">
                 <label>Description</label>
 
-                <textarea name="description" cols="30" rows="10">
-                    Ajouter une description
-                </textarea>
+                <textarea name="description" placeholder=" Ajouter une description" cols="30" rows="10"></textarea>
             </div>
             <div class="field input">
                 <label>Code Postal</label>
@@ -39,6 +41,7 @@ spl_autoload_register(function ($class) {
                 <label>Prix</label>
                 <input type="number" name="price">
             </div>
+            <input type="number" name="uid" value='<?php echo $_SESSION['user_id']; ?>' hidden>
 
 
             <div class="field input">

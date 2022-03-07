@@ -4,6 +4,7 @@
 class Location
 {
 
+    private $uid;
     private $title;
     private $description;
     private $postcode;
@@ -70,6 +71,10 @@ class Location
     {
         $this->created_at = $value;
     }
+    public function setUid($value)
+    {
+        $this->uid = $value;
+    }
 
 
 
@@ -116,6 +121,7 @@ class Location
     public function get_info()
     {
         $result = array(
+            'uid' => $this->uid,
             'title' => $this->title,
             'postcode' => $this->postcode,
             'city' => $this->city,

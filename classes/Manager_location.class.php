@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require('php/config.php');
 
 
@@ -30,8 +32,8 @@ class Manager_location
 
 
 
-        $sql = $this->bdd->prepare("INSERT INTO advert (title,description,postcode,city,price,reservation_message,category_id)
-                            VALUES (:title,:description,:postcode,:city,:price,:reservation_message,:category_id);");
+        $sql = $this->bdd->prepare("INSERT INTO advert (title,description,postcode,city,price,reservation_message,category_id,user_id)
+                            VALUES (:title,:description,:postcode,:city,:price,:reservation_message,:category_id,:user_id);");
         $sql->bindValue(':title', $array['title'], PDO::PARAM_STR);
         $sql->bindValue(':description', $array['description'], PDO::PARAM_STR);
         $sql->bindValue(':postcode', $array['postcode'], PDO::PARAM_STR);
@@ -39,11 +41,13 @@ class Manager_location
         $sql->bindValue(':price', $array['price'], PDO::PARAM_STR);
         $sql->bindValue(':reservation_message', $msg_reservation, PDO::PARAM_STR);
         $sql->bindValue(':category_id', $array['category_id'], PDO::PARAM_INT);
+        $sql->bindValue(':user_id', $array['uid'], PDO::PARAM_INT);
         $sql->execute();
 
         if ($sql->rowCount() > 0) {
 
             echo "<div class='success-txt'>success</div>";
+            header("Location:index.php");
         } else {
             echo "<div class='error-txt'>something wrong</div>";
         }
@@ -62,6 +66,24 @@ class Manager_location
         $sql_update->bindValue(':city', $array['city'], PDO::PARAM_STR);
         $sql_update->bindValue(':price', $array['price'], PDO::PARAM_STR);
         $sql_update->bindValue(':category_id', $array['category_id'], PDO::PARAM_INT);
+        $sql_update->bindValue(':location_id', $array['location_id'], PDO::PARAM_INT);
+        $sql_update->execute();
+
+        if ($sql_update->rowCount() > 0) {
+
+            echo "<div class='success-txt'>success</div>";
+            header("Location: index.php");
+        } else {
+            echo "<div class='error-txt'>something wrong</div>";
+        }
+    }
+
+    public function reservation_location(array $array)
+    {
+
+        $sql_update = $this->bdd->prepare("UPDATE `advert` SET `reservation_message`= :reservation_message WHERE advert.id_advert = :location_id");
+
+        $sql_update->bindValue(':reservation_message', $array['reservation_message'], PDO::PARAM_STR);
         $sql_update->bindValue(':location_id', $array['location_id'], PDO::PARAM_INT);
         $sql_update->execute();
 
@@ -95,10 +117,9 @@ class Manager_location
                                     INNER JOIN category ON category.id_category = advert.category_id
                                     WHERE advert.id_advert = {$id}
                                    ");
-        $result = $sql->fetch();              
-        
-        $ad = new Location($result);
-        return $ad;
+        $result = $sql->fetch();
+
+        return $result;
     }
 
 
@@ -110,8 +131,8 @@ class Manager_location
                                 INNER JOIN category ON category.id_category = advert.category_id ORDER BY created_at DESC");
         $result = $sql->fetchAll();
 
-      
-       
+
+
         return $result;
     }
 }

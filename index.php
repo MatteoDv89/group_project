@@ -1,4 +1,12 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location:login.php');
+}
 include_once "php/header.php";
 include "php/config.php";
 spl_autoload_register(function ($class) {
@@ -17,7 +25,6 @@ spl_autoload_register(function ($class) {
             <td>Post code</td>
             <td>City</td>
             <td>Price</td>
-            <td>Reservation</td>
             <td>Category</td>
             <td>Description</td>
             <td>Reservation</td>
@@ -40,12 +47,19 @@ spl_autoload_register(function ($class) {
         foreach ($results as $result) {
 
         ?>
-            <tr>
+
 
             <tr>
 
                 <td>
-                    <?php echo strtoupper($result['title']); ?>
+                    <?php
+                    if ((isset($_SESSION['user_id']) && $result['user_id'] == $_SESSION['user_id']) || (isset($_SESSION['admin']) && $_SESSION['admin'] === "nkksdogljslo822s2Jdll")) {
+                        echo "<a href='detail.php?id_location=" . $result['id_advert'] . "'  id='detail_link_user' >" . strtoupper($result['title']) . "</a>";
+                    } else {
+
+                        echo strtoupper($result['title']);
+                    }
+                    ?>
                 </td>
 
                 <td>
@@ -57,9 +71,7 @@ spl_autoload_register(function ($class) {
                 <td>
                     <?php echo substr($result['price'], 0, strlen($result['price'] - 2)); ?>
                 </td>
-                <td>
-                    <?php echo $result['reservation_message']; ?>
-                </td>
+
 
 
                 <td>
@@ -74,30 +86,28 @@ spl_autoload_register(function ($class) {
                     ?>
                 </td>
                 <td>
-                    <?php if ($result['reservation_message'] == "disponible") {
-                        echo "Disponible";
+                    <?php
+
+                    if ($_SESSION['user_id'] && $result['user_id'] == $_SESSION['user_id']) {
+                        if ($result['reservation_message'] == "disponible") {
+                            echo "<a href='detail.php?id_location=" . $result['id_advert'] . "'  id='detail_link_user' >A Réserver</a>";
+                        } else {
+                            echo "Réservé";
+                        }
                     } else {
-                        $result['reservation_message'];
-                    } ?>
-                </td>
-                <!-- <td>
-                     <?php echo substr($result['created_at'], 0, 10); ?> 
-                </td> -->
-
-                <!-- 
-                <td>
-                    <form action="edit.php" method='post' class='edit'>
-                        <input type="text" name="location_id" value=<?php echo $result['id_advert']; ?> hidden>
 
 
-
-                        <button><i class="fas fa-edit"></i></button>
-                    </form>
+                        if ($result['reservation_message'] == "disponible") {
+                            echo "<a href='detail.php?id_location=" . $result['id_advert'] . "'  id='detail_link' >Réserver</a>";
+                        } else {
+                            echo "Réservé";
+                        }
+                    }
+                    ?>
                 </td>
 
-                <td>
-                    <a href="delete.php?id_location=<?php echo $result['id_advert']; ?>" class="link_delete"><i class="fas fa-trash"></i></a>
-                </td> -->
+
+
 
 
 
@@ -118,10 +128,11 @@ spl_autoload_register(function ($class) {
 
 
 
-        <script src="javascript/delete.js"></script>
+
 
     </tbody>
 </table>
 <div class="button_more">
     <a class='view_all' href="all_location.php">Consulter toute les annonces</a>
 </div>
+<script src="javascript/delete.js"></script>

@@ -16,6 +16,13 @@
         <a href="index.php">
             <h1>GroupProject</h1>
         </a>
+        <?php if (isset($_SESSION['user_id'])) {
+        ?>
+            <form action="./php/logout.php">
+                <button>Log out</button>
+            </form>
+        <?php
+        } ?>
         <form action="add_location.php">
             <button>Ajouter une annonce</button>
         </form>

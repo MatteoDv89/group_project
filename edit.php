@@ -1,4 +1,12 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location:login.php');
+}
 include_once "php/header.php";
 require_once('php/config.php');
 spl_autoload_register(function ($class) {
@@ -33,7 +41,7 @@ spl_autoload_register(function ($class) {
             <div class="field input">
                 <label>Title</label>
                 <input type="text" <?php if (isset($_POST['location_id'])) {
-                                        echo "value='" . $result->getTitle() . "'";
+                                        echo "value='" . $result['title'] . "'";
                                     } ?> name="title" required>
                 <input type="text" <?php if (isset($_POST['location_id'])) {
                                         echo "value='" . $_POST['location_id'] . "'";
@@ -42,20 +50,20 @@ spl_autoload_register(function ($class) {
             <div class="field input">
                 <label>City</label>
                 <input type="text" <?php if (isset($_POST['location_id'])) {
-                                        echo "value='" . $result->getCity() . "'";
+                                        echo "value='" . $result['city'] . "'";
                                     } ?> name="city" required>
             </div>
             <div class="field input">
                 <label>Postcode</label>
                 <input type="text" <?php if (isset($_POST['location_id'])) {
-                                        echo "value='" . $result->getPostcode() . "'";
+                                        echo "value='" . $result['postcode'] . "'";
                                     } ?> name="postcode" required>
             </div>
 
             <div class="field input">
                 <label>Prix</label>
                 <input type="number" <?php if (isset($_POST['location_id'])) {
-                                            echo "value='" . $result->getPrice() . "'";
+                                            echo "value='" . $result['price'] . "'";
                                         } ?> name="price" required>
             </div>
 
@@ -70,8 +78,8 @@ spl_autoload_register(function ($class) {
                     foreach ($type_arr as $row) {
                     ?>
                         <?php if (isset($_POST['location_id'])) {
-                            if ($row == $result->getCategory_name()) {
-                                echo "<option value='" . $result->getCategory_id() . "' selected>" . $result->getCategory_name() . "</option>";
+                            if ($row == $result['category_name']) {
+                                echo "<option value='" . $result['category_id'] . "' selected>" . $result['category_name'] . "</option>";
                             } else {
                                 $cat_value;
                                 if ($row == 'location') {
@@ -100,7 +108,7 @@ spl_autoload_register(function ($class) {
             <div class="field input">
                 <label>Description</label>
                 <textarea name="description" id="description" cols="30" rows="10"> <?php if (isset($_POST['location_id'])) {
-                                                                                        echo $result->getDescription();
+                                                                                        echo $result['description'];
                                                                                     } ?></textarea>
             </div>
 
