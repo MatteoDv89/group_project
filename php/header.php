@@ -15,6 +15,6 @@
     <p>Immobilier</p>
     </a>
     <form action="add_location.php">        
-        <button>Ajouter une annonce</button>
+        <button class>Ajouter une annonce</button>
     </form>
 </div>

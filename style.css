@@ -149,6 +149,33 @@ body{
     cursor: pointer;
 }
 
+.btn-1 {
+    background: #DC0E63;
+    color:#fff;
+    margin-top: 13px;
+    margin-bottom: 20px;
+    height: 45px;
+    width: 530px;
+    border:none;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+body h2 {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+#msg {
+    margin-top: 35px;
+}
+
+body h4 {
+    margin-top: 25px;
+
+}
+
 .form .link{
     text-align: center;
     margin: 10px 0;
