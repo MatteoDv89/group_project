@@ -15,6 +15,9 @@
     <p>Immobilier</p>
     </a>
     <form action="add_location.php">        
-        <button class>Ajouter une annonce</button>
+        <button>Ajouter une annonce</button>
+    </form>
+    <form action="consult_one_advert.php">        
+        <button>Consulter une annonce</button>
     </form>
 </div>
