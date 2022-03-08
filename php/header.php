@@ -14,16 +14,16 @@
 
     <div class="navbar">
         <a href="index.php">
-            <h1>GroupProject</h1>
+            <h1>Group<span>Project</span></h1>
         </a>
-        <?php if (isset($_SESSION['user_id'])) {
-        ?>
-            <form action="./php/logout.php">
-                <button>Log out</button>
-            </form>
-        <?php
-        } ?>
-        <form action="add_location.php">
-            <button>Ajouter une annonce</button>
-        </form>
+        <div class="btn_nav">
+            <?php if (isset($_SESSION['user_id'])) {
+            ?>
+                <a href="./php/logout.php">Log out</a>
+            <?php
+            } ?>
+            <a href="add_location.php">
+                Ajouter une annonce
+            </a>
+        </div>
     </div>

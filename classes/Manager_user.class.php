@@ -59,6 +59,8 @@ class Manager_user
     public function get_user(array $array)
     {
 
+    
+
 
         $sql3 = $this->bdd->query("SELECT * FROM user WHERE mail = '{$array['mail']}'");
         $user = $sql3->fetch();
